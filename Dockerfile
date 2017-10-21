@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN apt-get update \
     && apt-get install -y curl subversion build-essential flex bison libboost-dev \
-       texinfo stx-btree-dev zip netcat gawk python2.7 \
+       texinfo stx-btree-dev zip netcat gawk python2.7 python-serial \
     && apt-get autoclean
 
 RUN mkdir /sdcc -p \
