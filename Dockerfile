@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN mkdir /sdcc -p \
     && cd /sdcc \
-    && svn checkout svn://svn.code.sf.net/p/sdcc/code/trunk/sdcc@10770 \
+    && svn checkout svn://svn.code.sf.net/p/sdcc/code/trunk/sdcc@10977 \
     && cd sdcc \
     && ./configure --disable-pic14-port --disable-pic16-port \
     && make && make install \
