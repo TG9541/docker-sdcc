@@ -31,4 +31,4 @@ The following builds the W1209 binary, runs it in uCsim, compiles the code in W1
 docker run -ti -v `pwd`:/home docker-sdcc /bin/sh -c "cd /home && make BOARD=W1209 forth"
 ```
 
-If you'd like to see it in action check out the STM8 eForth [.travis-ci.yml file](https://github.com/TG9541/stm8ef/blob/master/.travis.yml) and the [Travis-CI log](https://travis-ci.org/TG9541/stm8ef).
+If you'd like to see it in action check out the GitHub Action workflows in STM8 eForth.
