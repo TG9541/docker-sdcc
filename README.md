@@ -7,16 +7,23 @@ This repository contains all that's needed for building and testing TG9541/STM8E
 * telnet for debugging STM8 code with uCsim
 
 The corresponding Docker Hub repository is [tg9541/docker-sdcc](https://hub.docker.com/r/tg9541/docker-sdcc/builds/).
+The GitHub Container Registry image is [ghcr.io/tg9541/docker-sdcc](https://github.com/TG9541/docker-sdcc/pkgs/container/docker-sdcc).
 
 To build it run:
 ```
 docker build -t docker-sdcc .
 ```
 
-To publish it run:
+To publish to Docker Hub:
 ```
 docker tag docker-sdcc <DockerId>/docker-sdcc
 docker push <DockerId>/docker-sdcc
+```
+
+To publish to GitHub Container Registry:
+```
+docker tag docker-sdcc ghcr.io/tg9541/docker-sdcc:3.9.0
+docker push ghcr.io/tg9541/docker-sdcc:3.9.0
 ```
 
 The following builds the W1209 binary, runs it in uCsim, compiles the code in W1209/board.fs, and dumps the Flash memory to out/W1209/W1209-forth.ihx:
