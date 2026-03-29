@@ -11,6 +11,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        test-image: [docker-sdcc-test-1, docker-sdcc-test-2]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,21 +28,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build test image
+      - name: Build and test push
         uses: docker/build-push-action@v4
         with:
           context: .
           dockerfile: Dockerfile.test
-          push: false  # Don't push, just test build
-          load: true  # Load into Docker daemon
-          tags: ghcr.io/tg9541/docker-sdcc:3.9.0-test
+          push: true
+          tags: ghcr.io/tg9541/${{ matrix.test-image }}:latest
+          labels: |
+            org.opencontainers.image.description=Test image
+            org.opencontainers.image.title=Test
+            org.opencontainers.image.version=1.0
 
-      - name: Verify image
+      - name: Verify push
         run: |
-          docker images | grep docker-sdcc
-          echo "Test build successful!"
-
-      - name: Push test image (optional)
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          docker push ghcr.io/tg9541/docker-sdcc:3.9.0-test
+          echo "Test image pushed successfully to: ghcr.io/tg9541/${{ matrix.test-image }}:latest"
