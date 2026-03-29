@@ -28,7 +28,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and test push
+      - name: Delete existing test images
+        run: |
+          docker pull ghcr.io/tg9541/${{ matrix.test-image }}:latest 2>/dev/null || true
+          docker rmi ghcr.io/tg9541/${{ matrix.test-image }}:latest 2>/dev/null || true
+        continue-on-error: true
+
+      - name: Build and push test image
         uses: docker/build-push-action@v4
         with:
           context: .
