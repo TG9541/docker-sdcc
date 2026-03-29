@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 RUN apt-get update \
     && apt-get install -y curl subversion build-essential flex bison libboost-dev \
-       texinfo stx-btree-dev zip netcat gawk python3 python3-serial libz-dev telnet vim \
+       texinfo zip netcat-openbsd gawk python3 python3-serial libz-dev telnet vim \
     && apt-get autoclean
 
 RUN mkdir /sdcc -p \
